@@ -10,6 +10,8 @@ and posts all lints as annotations for the pushed commit.
 
 ![Screenshot of a clippy warning displayed in the commit interface of GitHub](./.github/screenshot.png)
 
+This GitHub Action has been forked from [actions-rs/clippy-check](https://github.com/actions-rs/clippy-check). The original project published under the name `rust-clippy-check`. See [LICENSE](LICENSE) for copyright attribution details.
+
 ## Example workflow
 
 Note: this workflow uses [`dtolnay/rust-toolchain`](https://github.com/dtolnay/rust-toolchain) to install the most recent `nightly` clippy.
