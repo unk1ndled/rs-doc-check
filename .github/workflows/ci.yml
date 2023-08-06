@@ -6,11 +6,16 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version-file: '.nvmrc'
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build
-    - run: npm run test
+      - name: Create npm configuration
+        run: echo "//npm.pkg.github.com/:_authToken=${token}" >> ~/.npmrc
+        env:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test

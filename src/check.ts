@@ -169,7 +169,7 @@ ${this.stats.help} help`);
       head_sha: options.head_sha,
       status: 'in_progress',
     });
-    // TODO:  Check for errors
+    // TODO: Check for errors
 
     return response.data.id;
   }
