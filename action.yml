@@ -1,14 +1,11 @@
-name: 'rust-clippy-check'
+name: 'rs-clippy-check'
 description: 'Run clippy and annotate the diff with errors and warnings'
-author: 'actions-rs team'
-branding:
-  icon: play-circle
-  color: black
-
+author: 'clechasseur'
 inputs:
   token:
     description: GitHub token
-    required: true
+    required: false
+    default: ${{ github.token }}
   toolchain:
     description: Toolchain to use (without the `+` sign, ex. `nightly`)
     required: false
@@ -19,9 +16,11 @@ inputs:
     description: Use cross instead of cargo
     default: false
   name:
-    description: Display name of the created GitHub check. Must be unique across several actions-rs/clippy-check invocations.
+    description: Display name of the created GitHub check. Must be unique across several clechasseur/rs-clippy-check invocations.
     default: clippy
-
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
+branding:
+  icon: paperclip
+  color: black
