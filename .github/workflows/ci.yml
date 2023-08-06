@@ -19,3 +19,41 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run test
+
+  rust-tests-clippy-warnings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: ./
+        with:
+          name: clippy-warnings
+
+  rust-tests-clippy-errors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: ./
+        with:
+          args: -- -D warnings
+          name: clippy-errors
+        continue-on-error: true
+
+  rust-tests-cross:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-unknown-linux-gnu
+          components: clippy
+      - uses: ./
+        with:
+          args: --target aarch64-unknown-linux-gnu
+          use-cross: true
+          name: clippy-cross
