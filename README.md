@@ -49,7 +49,6 @@ All inputs are optional.
 | `use-cross` | Use [`cross`](https://github.com/cross-rs/cross) instead of `cargo` | bool | `false` |
 | `name` | Name of the created GitHub check. If running this action multiple times, each run must have a unique name. | string | `clippy` |
 
-For extra details about the `toolchain`, `args` and `use-cross` inputs,
-see [`rs-cargo` Action](https://github.com/clechasseur/rs-cargo#inputs).
+For extra details about the `toolchain`, `args` and `use-cross` inputs, see [`rs-cargo` Action](https://github.com/clechasseur/rs-cargo#inputs).
 
-**NOTE**: if your workflow contains multiple instances of the `clippy-check` action you will need to give each invocation a unique name, using the `name` property described above. Check runs must have a unique name; this prevents a later check run overriding a previous one within the same workflow.
+**NOTE**: if your workflow contains multiple instances of `rs-clippy-check`, you will need to give each invocation a unique name using the `name` property described above. Check runs must have a unique name; this prevents a later check run overriding a previous one within the same workflow.
