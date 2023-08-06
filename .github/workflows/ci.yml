@@ -2,6 +2,10 @@ name: CI
 
 on: [pull_request, push]
 
+permissions:
+  checks: write
+  contents: read
+
 jobs:
   main:
     runs-on: ubuntu-latest
