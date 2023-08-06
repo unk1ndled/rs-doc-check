@@ -162,7 +162,7 @@ ${this.stats.help} help`);
     client: any,
     options: CheckOptions,
   ): Promise<number> {
-    const response = await client.checks.create({
+    const response = await client.rest.checks.create({
       owner: options.owner,
       repo: options.repo,
       name: options.name,
@@ -211,7 +211,7 @@ ${this.stats.help} help`);
       }
 
       // TODO: Check for errors
-      await client.checks.update(req);
+      await client.rest.checks.update(req);
 
       annotations = this.getBucket();
     }
@@ -240,7 +240,7 @@ ${this.stats.help} help`);
     };
 
     // TODO: Check for errors
-    await client.checks.update(req);
+    await client.rest.checks.update(req);
 
     return;
   }
@@ -267,7 +267,7 @@ ${this.stats.help} help`);
     };
 
     // TODO: Check for errors
-    await client.checks.update(req);
+    await client.rest.checks.update(req);
 
     return;
   }
