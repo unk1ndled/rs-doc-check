@@ -7,7 +7,6 @@
   "scripts": {
     "build": "ncc build src/main.ts --minify",
     "format": "prettier --write 'src/**/*.ts' '__tests__/**/*.ts'",
-    "lint": "tsc --noEmit && eslint 'src/**/*.ts' '__tests__/**/*.ts'",
     "watch": "ncc build src/main.ts --watch --minify",
     "test": "jest --passWithNoTests"
   },
@@ -26,7 +25,7 @@
     "url": "https://github.com/clechasseur/rs-clippy-check/issues"
   },
   "dependencies": {
-    "@clechasseur/rs-actions-core": "^1.0.2",
+    "@clechasseur/rs-actions-core": "^1.0.4",
     "string-argv": "^0.3.2"
   },
   "devDependencies": {
@@ -38,6 +37,6 @@
     "npm-check-updates": "^16.10.17",
     "prettier": "^2.2.1",
     "ts-jest": "^26.5.6",
-    "typescript": "^4.3.5"
+    "typescript": "^4.9.5"
   }
 }
