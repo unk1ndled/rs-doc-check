@@ -5,6 +5,7 @@ on: [pull_request, push]
 permissions:
   checks: write
   contents: read
+  packages: read
 
 jobs:
   main:
