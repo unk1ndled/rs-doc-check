@@ -1,3 +1,5 @@
+import path from 'path';
+
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as github from '@actions/github';
@@ -52,19 +54,24 @@ export async function run(actionInput: input.Input): Promise<void> {
 
   args = args.concat(actionInput.args);
 
-  let runner = new CheckRunner();
+  const runner = new CheckRunner(actionInput.workingDirectory);
+  const options: exec.ExecOptions = {
+    ignoreReturnCode: true,
+    failOnStdErr: false,
+    listeners: {
+      stdline: (line: string) => {
+        runner.tryPush(line);
+      },
+    },
+  };
+  if (actionInput.workingDirectory) {
+    options.cwd = path.join(process.cwd(), actionInput.workingDirectory);
+  }
+
   let clippyExitCode: number = 0;
   try {
     core.startGroup('Executing cargo clippy (JSON output)');
-    clippyExitCode = await program.call(args, {
-      ignoreReturnCode: true,
-      failOnStdErr: false,
-      listeners: {
-        stdline: (line: string) => {
-          runner.tryPush(line);
-        },
-      },
-    });
+    clippyExitCode = await program.call(args, options);
   } finally {
     core.endGroup();
   }
