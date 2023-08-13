@@ -29,7 +29,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@nightly
         with:
           components: clippy
-      - uses: clechasseur/rs-clippy-check@v1
+      - uses: clechasseur/rs-clippy-check@v2
         with:
           args: --all-features
 ```
