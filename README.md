@@ -49,6 +49,7 @@ All inputs are optional.
 | `toolchain` | Rust toolchain to use; override or system default toolchain will be used if omitted | string |         |
 | `args` | Arguments for the `cargo clippy` command | string |         |
 | `use-cross` | Use [`cross`](https://github.com/cross-rs/cross) instead of `cargo` | bool | `false` |
+| `working-directory` | Directory where to perform the `cargo clippy` command | string |         |
 | `name` | Name of the created GitHub check. If running this action multiple times, each run must have a unique name. | string | `clippy` |
 
 For extra details about the `toolchain`, `args` and `use-cross` inputs, see [`rs-cargo` Action](https://github.com/clechasseur/rs-cargo#inputs).
