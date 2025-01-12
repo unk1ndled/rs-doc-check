@@ -30,7 +30,7 @@ jobs:
         with:
           toolchain: nightly
           components: clippy
-      - uses: clechasseur/rs-clippy-check@v3
+      - uses: clechasseur/rs-clippy-check@v4
         with:
           args: --all-features
 ```
@@ -39,14 +39,15 @@ jobs:
 
 All inputs are optional.
 
-| Name | Description | Type | Default |
-| --- | --- | --- | --- |
-| `toolchain` | Rust toolchain to use; override or system default toolchain will be used if omitted | string |         |
-| `args` | Arguments for the `cargo clippy` command | string |         |
-| `use-cross` | Use [`cross`](https://github.com/cross-rs/cross) instead of `cargo` | bool | `false` |
-| `working-directory` | Directory where to perform the `cargo clippy` command | string |         |
+| Name                | Required | Description                                                                                                                            | Type   | Default         |
+| --------------------| :------: |----------------------------------------------------------------------------------------------------------------------------------------| ------ |-----------------|
+| `toolchain`         |          | Rust toolchain name to use                                                                                                             | string |                 |
+| `args`              |          | Arguments for the `cargo clippy` command                                                                                               | string |                 |
+| `working-directory` |          | Directory where to perform the `cargo clippy` command                                                                                  | string |                 |
+| `tool`              |          | Tool to use instead of `cargo` ([`cross`](https://github.com/cross-rs/cross) or [`cargo-hack`](https://github.com/taiki-e/cargo-hack)) | string |                 |
+| `cache-key`         |          | Cache key when using a non-`cargo` `tool`                                                                                              | string | rs-clippy-check |
 
-For extra details about the `toolchain`, `args` and `use-cross` inputs, see [`rs-cargo` Action](https://github.com/clechasseur/rs-cargo#inputs).
+For extra details about the `toolchain`, `args`, `tool` and `cache-key` inputs, see [`rs-cargo` Action](https://github.com/clechasseur/rs-cargo#inputs).
 
 ## Notes
 
