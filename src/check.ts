@@ -39,7 +39,6 @@ export interface SummaryContext {
   rustc: string;
   cargo: string;
   program?: string;
-  clippy: string;
 }
 
 interface Stats {
@@ -76,7 +75,7 @@ export class CheckRunner {
       return;
     }
 
-    if (contents.reason != 'compiler-message') {
+    if (contents.reason !== 'compiler-message') {
       core.debug(`Unexpected reason field, ignoring it: ${contents.reason}`);
       return;
     }
@@ -110,14 +109,12 @@ export class CheckRunner {
   }
 
   public async addSummary(context: SummaryContext): Promise<void> {
-    core.info(`Clippy results: \
+    core.info(`Rustdoc results: \
 ${this._stats.ice} ICE, ${this._stats.error} errors, \
 ${this._stats.warning} warnings, ${this._stats.note} notes, \
 ${this._stats.help} help`);
 
-    // Add all the annotations now. It is limited to 10, but it's better than nothing.
-    // All annotations will also be included in the summary, below.
-    // For more information, see https://docs.github.com/en/rest/checks/runs?apiVersion=2022-11-28
+    // Process annotations (limited to 10 per GitHub constraints)
     for (const [fileName, annotations] of Object.entries(this._annotations)) {
       for (const annotation of annotations) {
         const properties: core.AnnotationProperties = {
@@ -147,7 +144,7 @@ ${this._stats.help} help`);
       }
     }
 
-    // Now generate the summary with all annotations included.
+    // Generate GitHub summary
     if (process.env.GITHUB_STEP_SUMMARY) {
       core.summary.addHeading('Results').addTable([
         [
@@ -189,7 +186,6 @@ ${this._stats.help} help`);
           context.rustc,
           context.cargo,
           ...(context.program ? [context.program] : []),
-          context.clippy,
         ])
         .write()
         .then((_summary) => {});
@@ -223,7 +219,7 @@ ${this._stats.help} help`);
     };
 
     // Omit these parameters if `start_line` and `end_line` have different values.
-    if (primarySpan.line_start == primarySpan.line_end) {
+    if (primarySpan.line_start === primarySpan.line_end) {
       fileAnnotation.beginColumn = primarySpan.column_start;
       fileAnnotation.endColumn = primarySpan.column_end;
     }
@@ -249,7 +245,7 @@ ${this._stats.help} help`);
   }
 
   private static linesMsg(beginLine: number, endLine: number): string {
-    return beginLine == endLine
+    return beginLine === endLine
       ? `Line ${beginLine}`
       : `Lines ${beginLine}-${endLine}`;
   }
