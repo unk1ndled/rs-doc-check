@@ -1,0 +1,1 @@
+searchState.loadedDescShard("lib", 0, "Example Rust Library\nAdds two numbers together")
