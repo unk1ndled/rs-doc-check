@@ -36,5 +36,3 @@ pub fn deprecated_link_syntax() {}
 /// This function is missing documentation (if `#![deny(missing_docs)]` is enabled).
 pub fn undocumented_function() {}
 
-#[deprecated]
-/// This function is
