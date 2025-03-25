@@ -101,7 +101,7 @@ export async function run(actionInput: input.Input): Promise<void> {
     ...(programVersion !== cargoVersion && { program: programVersion }),
   });
 
-  if (rustdocExitCode !== 0) {
+  if (rustdocExitCode > 1) {
     throw new Error(`Rustdoc has exited with exit code ${rustdocExitCode}`);
   }
 }
