@@ -132,3 +132,6 @@ fn unreachable_code_demo() -> i32 {
     return 5;
     println!("This will never run!"); // Unreachable warning
 }
+
+#[deprecated]
+/// This function is
