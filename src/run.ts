@@ -101,8 +101,7 @@ export async function run(actionInput: input.Input): Promise<void> {
     ...(programVersion !== cargoVersion && { program: programVersion }),
   });
 
-  // TEMPORARY never exit
-  // if (rustdocExitCode = 0) {
-  //   throw new Error(`Rustdoc has exited with exit code ${rustdocExitCode}`);
-  // }
+  if (rustdocExitCode !== 0) {
+    core.warning(`Rustdoc has exited with exit code ${rustdocExitCode}, but continuing execution.`);
+  }
 }
