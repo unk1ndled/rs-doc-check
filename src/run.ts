@@ -40,42 +40,35 @@ export async function run(actionInput: input.Input): Promise<void> {
   const cargo = await Cargo.get(actionInput.toolchain);
   const program = actionInput.tool ? await getProgram(actionInput) : cargo;
 
-  // TODO: Simplify this block
   let rustcVersion = '';
   let cargoVersion = '';
   let programVersion = '';
-  let clippyVersion = '';
+
   await exec.exec('rustc', ['-V'], {
     silent: true,
     listeners: {
       stdout: (buffer: Buffer) => (rustcVersion = buffer.toString().trim()),
     },
   });
+
   await cargo.call(['-V'], {
     silent: true,
     listeners: {
       stdout: (buffer: Buffer) => (cargoVersion = buffer.toString().trim()),
     },
   });
+
   await program.call(['-V'], {
     silent: true,
     listeners: {
       stdout: (buffer: Buffer) => (programVersion = buffer.toString().trim()),
     },
   });
-  await cargo.call(['clippy', '-V'], {
-    silent: true,
-    listeners: {
-      stdout: (buffer: Buffer) => (clippyVersion = buffer.toString().trim()),
-    },
-  });
 
   let args: string[] = [];
-  args.push('clippy');
-  // `--message-format=json` should be right after the `cargo clippy`
-  // because usually people are adding the `-- -D warnings` at the end
-  // of arguments, and it will mess up the output.
-  args.push('--message-format=json');
+  args.push('doc');
+  args.push('--document-private-items');
+  args.push('--message-format=json'); // Ensures structured output for parsing
 
   args = args.concat(actionInput.args);
 
@@ -89,14 +82,15 @@ export async function run(actionInput: input.Input): Promise<void> {
       },
     },
   };
+
   if (actionInput.workingDirectory) {
     options.cwd = path.join(process.cwd(), actionInput.workingDirectory);
   }
 
-  let clippyExitCode: number = 0;
+  let rustdocExitCode: number = 0;
   try {
-    core.startGroup('Executing cargo clippy (JSON output)');
-    clippyExitCode = await program.call(args, options);
+    core.startGroup('Executing cargo doc (JSON output)');
+    rustdocExitCode = await program.call(args, options);
   } finally {
     core.endGroup();
   }
@@ -105,10 +99,9 @@ export async function run(actionInput: input.Input): Promise<void> {
     rustc: rustcVersion,
     cargo: cargoVersion,
     ...(programVersion !== cargoVersion && { program: programVersion }),
-    clippy: clippyVersion,
   });
 
-  if (clippyExitCode !== 0) {
-    throw new Error(`Clippy has exited with exit code ${clippyExitCode}`);
+  if (rustdocExitCode !== 0) {
+    throw new Error(`Rustdoc has exited with exit code ${rustdocExitCode}`);
   }
 }
