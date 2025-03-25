@@ -2,7 +2,7 @@
  * Parse action input into a some proper thing.
  */
 
-import { input } from '@clechasseur/rs-actions-core';
+import { input } from '@unk1ndled/rs-actions-core';
 
 import stringArgv from 'string-argv';
 

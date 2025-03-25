@@ -13,20 +13,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/clechasseur/rs-clippy-check.git"
+    "url": "git+https://github.com/unk1ndled/rs-doc-check.git"
   },
   "keywords": [
     "actions",
     "rust",
     "cargo"
   ],
-  "author": "clechasseur",
+  "author": "unk1ndled",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/clechasseur/rs-clippy-check/issues"
+    "url": "https://github.com/unk1ndled/rs-doc-check/issues"
   },
   "dependencies": {
-    "@clechasseur/rs-actions-core": "^5.0.2",
+    "@actions/core": "^1.11.1",
+    "@actions/exec": "^1.1.1",
+    "@unk1ndled/rs-actions-core": "^1.0.1",
     "string-argv": "^0.3.2"
   },
   "devDependencies": {

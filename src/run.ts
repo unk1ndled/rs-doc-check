@@ -8,7 +8,7 @@ import {
   CargoHackOptions,
   Cross,
   CrossOptions,
-} from '@clechasseur/rs-actions-core';
+} from '@unk1ndled/rs-actions-core';
 
 import * as input from './input';
 import { CheckRunner } from './check';
