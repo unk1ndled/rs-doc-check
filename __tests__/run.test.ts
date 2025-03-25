@@ -6,29 +6,29 @@ const SECONDS = 1000;
 describe('run', () => {
   it.each([
     {
-      name: 'rust-tests-clippy-warnings',
+      name: 'rust-tests-doc-warnings',
       input: {
         toolchain: 'stable',
         args: ['--all-features'],
-        workingDirectory: 'rust_tests/clippy_warnings',
+        workingDirectory: 'rust_tests/rust_doc_test_fail',
       },
     },
     {
       name: 'rust-tests-cross',
       input: {
         args: ['--target', 'aarch64-unknown-linux-gnu', '--all-features'],
-        workingDirectory: 'rust_tests/clippy_warnings',
+        workingDirectory: 'rust_tests/rust_doc_test_fail',
         tool: 'cross',
-        cacheKey: 'rs-clippy-check-tests',
+        cacheKey: 'rs-doc-doc-tests',
       },
     },
     {
       name: 'rust-tests-cargo-hack',
       input: {
         args: ['--feature-powerset'],
-        workingDirectory: 'rust_tests/clippy_warnings',
+        workingDirectory: 'rust_tests/doc_warnings',
         tool: 'cargo-hack',
-        cacheKey: 'rs-clippy-check-tests',
+        cacheKey: 'rs-doc-check-tests',
       },
     },
   ])(
