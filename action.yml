@@ -1,5 +1,5 @@
-name: 'rs-clippy-check'
-description: 'Run clippy and annotate the diff with errors and warnings'
+name: 'rs-doc-check'
+description: 'Run rustdoc and annotate the diff with errors and warnings (fork of rs-clippy-check)'
 author: 'unk1ndled'
 inputs:
   toolchain:
