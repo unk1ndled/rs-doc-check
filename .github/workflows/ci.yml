@@ -46,4 +46,4 @@ jobs:
 
       - name: Test Inline Annotation
         run: |
-          echo "::error file=/home/runner/work/rs-doc-check/rs-doc-check/rust_tests/rust_doc_test_fail/doc/lib.rs,line=2,col=1::This is a test annotation"
+          echo "::error file=/home/runner/work/rs-doc-check/rs-doc-check/rust_tests/rust_doc_test_fail/src/lib.rs,line=2,col=1::This is a test annotation"
