@@ -26,12 +26,24 @@ jobs:
   rust-tests-rustdoc:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4.2.2
-      - uses: actions-rust-lang/setup-rust-toolchain@v1.11.0
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Rust toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@v1.11.0
         with:
           components: rust-docs
           matcher: false
           rustflags: ''
-      - uses: ./
+
+      - name: Debug file structure
+        run: ls -R $GITHUB_WORKSPACE
+
+      - name: Run Rust Doc Tests
+        uses: ./
         with:
           working-directory: rust_tests/rust_doc_test_fail
+
+      - name: Test Inline Annotation
+        run: |
+          echo "::error file=rust_tests/rust_doc_test_fail/src/lib.rs,line=2,col=1::This is a test annotation"
