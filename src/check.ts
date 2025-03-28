@@ -135,7 +135,7 @@ ${this._stats.help} help`);
             core.notice(annotation.content, properties);
             break;
           case 'warning':
-            core.warning(annotation.content, properties);
+            core.error(annotation.content, properties);
             break;
           default:
             core.error(annotation.content, properties);

@@ -9,7 +9,7 @@ async function main(): Promise<void> {
 
     await run(actionInput);
   } catch (error) {
-    core.warning(<Error>error);
+    core.setFailed(<Error>error);
   }
 }
 
