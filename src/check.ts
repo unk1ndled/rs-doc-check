@@ -109,6 +109,19 @@ export class CheckRunner {
   }
 
   public async addSummary(context: SummaryContext): Promise<void> {
+
+
+    core.error('This is a test annotation', {
+      file: 'rust_tests/rust_doc_test_fail/src/lib.rs',
+      startLine: 1,
+      endLine: 1,
+      startColumn: 1,
+      endColumn: 10,
+    });
+
+    core.debug(`Current annotations: ${JSON.stringify(this._annotations, null, 2)}`);
+
+
     core.info(`Rustdoc results: \
 ${this._stats.ice} ICE, ${this._stats.error} errors, \
 ${this._stats.warning} warnings, ${this._stats.note} notes, \
@@ -135,7 +148,7 @@ ${this._stats.help} help`);
             core.notice(annotation.content, properties);
             break;
           case 'warning':
-            core.error(annotation.content, properties);
+            core.warning(annotation.content, properties);
             break;
           default:
             core.error(annotation.content, properties);
