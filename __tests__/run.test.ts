@@ -19,14 +19,14 @@ describe('run', () => {
         args: ['--target', 'aarch64-unknown-linux-gnu', '--all-features'],
         workingDirectory: 'rust_tests/rust_doc_test_fail',
         tool: 'cross',
-        cacheKey: 'rs-doc-doc-tests',
+        cacheKey: 'rs-doc-tests',
       },
     },
     {
       name: 'rust-tests-cargo-hack',
       input: {
         args: ['--feature-powerset'],
-        workingDirectory: 'rust_tests/doc_warnings',
+        workingDirectory: 'rust_tests/rust_doc_test_fail',
         tool: 'cargo-hack',
         cacheKey: 'rs-doc-check-tests',
       },
