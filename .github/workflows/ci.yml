@@ -36,14 +36,7 @@ jobs:
           matcher: false
           rustflags: ''
 
-      - name: Debug file structure
-        run: ls -R $GITHUB_WORKSPACE
-
       - name: Run Rust Doc Tests
         uses: ./
         with:
           working-directory: rust_tests/rust_doc_test_fail
-
-      - name: Test Inline Annotation
-        run: |
-          echo "::error file=/home/runner/work/rs-doc-check/rs-doc-check/rust_tests/rust_doc_test_fail/src/lib.rs,line=2,col=1::This is a test annotation"

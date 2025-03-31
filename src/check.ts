@@ -110,15 +110,6 @@ export class CheckRunner {
 
   public async addSummary(context: SummaryContext): Promise<void> {
 
-
-    core.error('This is a test annotation', {
-      file: 'rust_tests/rust_doc_test_fail/src/lib.rs',
-      startLine: 1,
-      endLine: 1,
-      startColumn: 1,
-      endColumn: 10,
-    });
-
     core.debug(`Current annotations: ${JSON.stringify(this._annotations, null, 2)}`);
 
 
