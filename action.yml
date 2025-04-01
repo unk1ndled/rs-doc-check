@@ -6,10 +6,10 @@ inputs:
     description: Toolchain to use (without the `+` sign, ex. `nightly`)
     required: false
   args:
-    description: Arguments for the cargo clippy command
+    description: Arguments for the command
     required: false
   working-directory:
-    description: Directory where to perform cargo clippy command
+    description: Directory where to perform the command
     required: false
   tool:
     description: Tool to use instead of cargo ([`cross`, `cargo-hack`])

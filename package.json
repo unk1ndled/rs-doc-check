@@ -1,8 +1,8 @@
 {
   "name": "rs-doc-check",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": false,
-  "description": "Run clippy and annotate the diff with errors and warnings",
+  "description": "Run cargo doc and annotate the diff with errors and warnings",
   "main": "dist/index.js",
   "scripts": {
     "all": "npm run build && npm run test",

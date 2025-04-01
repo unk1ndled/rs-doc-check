@@ -10,8 +10,6 @@ and posts all lints as annotations for the pushed commit [<sup>1</sup>](#note-an
 
 This GitHub Action has been forked from [clechasseur/rs-clippy-check](https://github.com/actions-rs/clippy-check). The original project published under the name [`rust-clippy-check`](https://github.com/marketplace/actions/rust-clippy-check). See [LICENSE](LICENSE) for copyright attribution details.
 
-## Example workflow
-
 
 
 ## Inputs
