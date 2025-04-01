@@ -19,6 +19,7 @@ fn missing_crate_level_docs() {}
 /// This struct lacks documentation for its fields.
 struct UndocumentedStruct {
     field: i32, // Missing doc comment warning
+    another_field: i32,
 }
 
 /// Enum missing documentation for its variants.
